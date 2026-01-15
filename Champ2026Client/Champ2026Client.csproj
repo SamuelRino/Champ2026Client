@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="cogs.png" />
+    <None Remove="desktop.png" />
+    <None Remove="file-text-o.png" />
+    <None Remove="images\bars.png" />
+    <None Remove="images\Logo.png" />
+    <None Remove="search.png" />
+    <None Remove="shopping-cart.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LiveCharts" Version="0.9.7" />
+    <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="images\bars.png" />
+    <Resource Include="images\cogs.png" />
+    <Resource Include="images\desktop.png" />
+    <Resource Include="images\file-text-o.png" />
+    <Resource Include="images\Logo.png" />
+    <Resource Include="images\search.png" />
+    <Resource Include="images\shopping-cart.png" />
+  </ItemGroup>
+
+</Project>
