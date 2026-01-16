@@ -1,0 +1,56 @@
+﻿<Page x:Class="Champ2026Client.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+      xmlns:local="clr-namespace:Champ2026Client"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MainPage">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20">Личный кабинет. Главная</Label>
+
+        <GroupBox Header="Эффективность сети" Grid.Row="1" Margin="5">
+            <Grid>
+                <lvc:AngularGauge x:Name="agNetEffective" Wedge="140" FromValue="0" ToValue="100" Foreground="{x:Null}" LabelsStep="100" TicksStep="100" SectionsInnerRadius="0.5" TicksForeground="{x:Null}" Margin="5">
+                    <lvc:AngularGauge.Sections>
+                        <lvc:AngularSection FromValue="0" ToValue="100" Fill="ForestGreen"/>
+                    </lvc:AngularGauge.Sections>
+                </lvc:AngularGauge>
+
+                <TextBlock x:Name="tbEffective" VerticalAlignment="Bottom" HorizontalAlignment="Center" Text="Работающих автоматов - 0%" Margin="20"/>
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Grid.Column="1" Grid.Row="1" Margin="5" Header="Состояние сети">
+            <lvc:PieChart InnerRadius="35" x:Name="pcNetState">
+            </lvc:PieChart>
+        </GroupBox>
+
+        <GroupBox Grid.Row="2" Grid.ColumnSpan="2" Margin="5" Header="Динамика продаж за последние 10 дней">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                
+                
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Page>

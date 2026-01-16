@@ -3,12 +3,11 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:Champ2026Client"
-    xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+    xmlns:local="clr-namespace:Champ2026Client"    
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="MainWindow"
-    Width="800"
-    Height="450"
+    Width="1000"
+    Height="650"
     Loaded="Window_Loaded"
     mc:Ignorable="d">
     <Grid>
@@ -23,7 +22,7 @@
 
         <Image Grid.ColumnSpan="2" Source="/images/Logo.png"  HorizontalAlignment="Left"/>
 
-        <Expander FlowDirection="RightToLeft" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1" Grid.RowSpan="2" Panel.ZIndex="10">
+        <Expander FlowDirection="RightToLeft" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1" Grid.RowSpan="2" Panel.ZIndex="10" Background="#00000000">
             <Expander.Header>
                 <StackPanel Orientation="Horizontal" Height="55" FlowDirection="LeftToRight">
                     <Image x:Name="photo" Source="/images/search.png"/>
@@ -59,30 +58,30 @@
                 <Image Source="/images/bars.png"/>
             </Button>
 
-            <Image Source="/images/search.png" Grid.Row="1" Margin="2"/>
-            <Image Source="/images/desktop.png" Grid.Row="2"/>
-            <Image Source="/images/file-text-o.png" Grid.Row="3"/>
-            <Image Source="/images/shopping-cart.png" Grid.Row="4"/>
-            <Image Source="/images/cogs.png" Grid.Row="5"/>
+            <Image Source="/images/search.png" Grid.Row="1" Margin="2" VerticalAlignment="Top"/>
+            <Image Source="/images/desktop.png" Grid.Row="2" VerticalAlignment="Top"/>
+            <Image Source="/images/file-text-o.png" Grid.Row="3" VerticalAlignment="Top"/>
+            <Image Source="/images/shopping-cart.png" Grid.Row="4" VerticalAlignment="Top"/>
+            <Image Source="/images/cogs.png" Grid.Row="5" VerticalAlignment="Top"/>
 
-            <TextBlock Text="Главная" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
+            <TextBlock Text="Главная" Grid.Row="1" Grid.Column="1"/>
 
-            <TextBlock Text="Монитор ТА" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center"/>
+            <TextBlock Text="Монитор ТА" Grid.Row="2" Grid.Column="1"/>
 
-            <TextBlock Text="Главная" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
+            <TextBlock Text="Главная" Grid.Row="1" Grid.Column="1"/>
 
-            <TextBlock Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Text="Детальные отчёты"/>
-            <Expander Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Grid.ColumnSpan="2" FlowDirection="RightToLeft">
+            <TextBlock Grid.Row="3" Grid.Column="1" Text="Детальные отчёты"/>
+            <Expander Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" Grid.ColumnSpan="2" FlowDirection="RightToLeft">
 
             </Expander>
 
-            <TextBlock Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Text="Учет ТМЦ"/>
-            <Expander Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Grid.ColumnSpan="2" FlowDirection="RightToLeft">
+            <TextBlock Grid.Row="4" Grid.Column="1" Text="Учет ТМЦ"/>
+            <Expander Grid.Row="4" Grid.Column="1" HorizontalAlignment="Stretch" Grid.ColumnSpan="2" FlowDirection="RightToLeft">
 
             </Expander>
 
             <TextBlock Grid.Row="5" Grid.Column="1" Text="Администрирование"/>
-            <Expander Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Grid.ColumnSpan="2" FlowDirection="RightToLeft">
+            <Expander Grid.Row="5" Grid.Column="1" HorizontalAlignment="Stretch" Grid.ColumnSpan="2" FlowDirection="RightToLeft">
                 <StackPanel>
                     <Button Content="Торговые автоматы" Margin="5"/>
                     <Button Content="Компании" Margin="5"/>
@@ -101,8 +100,8 @@
 
             <Label Foreground="White" FontSize="20">ООО Торговые автоматы</Label>
 
-            <Frame Grid.Row="1" Background="White">
-                
+            <Frame Grid.Row="1" x:Name="fMainFrame" Background="White">
+
             </Frame>
         </Grid>
     </Grid>

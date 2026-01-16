@@ -21,6 +21,12 @@ namespace Champ2026Client
         public MainWindow()
         {
             InitializeComponent();
+            NavigateToPage1(null, null);
+        }
+
+        private void NavigateToPage1(object sender, RoutedEventArgs e)
+        {
+            fMainFrame.Navigate(new MainPage());
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
