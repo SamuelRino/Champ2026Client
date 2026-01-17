@@ -32,7 +32,7 @@ namespace Champ2026Client
             InitializeComponent();
             timer = new DispatcherTimer();
             timer.Tick += (sender,e) => Timer_tick();
-            timer.Interval = TimeSpan.FromSeconds(5);
+            timer.Interval = TimeSpan.FromSeconds(30);
             Timer_tick();
             timer.Start();
         }
@@ -40,6 +40,8 @@ namespace Champ2026Client
         private async void Timer_tick()
         {
             double effective = 0;
+
+            InitColumnChart();
 
             using (_context = new User102Context())
             {
@@ -51,6 +53,8 @@ namespace Champ2026Client
 
             if (pcNetState.Series.Count == 0) InitPie();
             else UpdatePie();
+
+            
 
             effective = Math.Round(effective, 2) * 100;
 
@@ -112,7 +116,28 @@ namespace Champ2026Client
 
         private void InitColumnChart()
         {
+            var result = new Dictionary<string, string>();
+            DateTime today = DateTime.Today;
 
+            for (int i = -9; i<=0; i++)
+            {
+                DateTime date = today.AddDays(i);
+
+                string dateString = date.ToString("d");
+
+                string dayOfWeek = date.ToString("ddd");
+
+                result.Add(dateString, dayOfWeek);
+            }
+
+            List<string> labels = new List<string>();
+            foreach (var date in result)
+            {
+                labels.Add($"{date.Key}\n{date.Value}");
+            }
+
+            ccSalesDynamic.AxisX.Add(new Axis { Labels = labels, FontSize=10, MinValue=0, MaxValue=9, Separator = new LiveCharts.Wpf.Separator {Step=1, IsEnabled=true}, LabelsRotation = -90 });
+            ccSalesDynamic.AxisY.Add(new Axis { LabelFormatter = value => value.ToString("N0"), FontSize = 10, MinValue = 0 });
         }
     }
 }

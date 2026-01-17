@@ -48,8 +48,8 @@
                     <RowDefinition Height="40"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                
-                
+
+                <lvc:CartesianChart x:Name="ccSalesDynamic" Grid.Row="2"/>
             </Grid>
         </GroupBox>
     </Grid>
