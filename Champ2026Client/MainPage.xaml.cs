@@ -54,7 +54,7 @@ namespace Champ2026Client
             if (pcNetState.Series.Count == 0) InitPie();
             else UpdatePie();
 
-            
+            if (ccSalesDynamic.Series.Count == 0) InitColumnChart();
 
             effective = Math.Round(effective, 2) * 100;
 
@@ -116,28 +116,77 @@ namespace Champ2026Client
 
         private void InitColumnChart()
         {
-            var result = new Dictionary<string, string>();
-            DateTime today = DateTime.Today;
+            var dates = new List<DateTime>();
+            var labelsX = new List<string>();
 
-            for (int i = -9; i<=0; i++)
+            for (int i = -9; i <= 0; i++)
             {
-                DateTime date = today.AddDays(i);
+                var today = new DateTime(2024, 8, 27);
+                var date = today.AddDays(i);
+                var dayOfWeek = date.ToString("ddd");
 
-                string dateString = date.ToString("d");
-
-                string dayOfWeek = date.ToString("ddd");
-
-                result.Add(dateString, dayOfWeek);
+                dates.Add(date);
+                labelsX.Add($"{date.ToString("d")}\n{dayOfWeek}");
             }
 
-            List<string> labels = new List<string>();
-            foreach (var date in result)
-            {
-                labels.Add($"{date.Key}\n{date.Value}");
-            }
+            //for (int i = -9; i <= 0; i++)
+            //{
+            //    var today = DateTime.Today;
+            //    var date = today.AddDays(i);
+            //    var dayOfWeek = date.ToString("ddd");
 
-            ccSalesDynamic.AxisX.Add(new Axis { Labels = labels, FontSize=10, MinValue=0, MaxValue=9, Separator = new LiveCharts.Wpf.Separator {Step=1, IsEnabled=true}, LabelsRotation = -90 });
-            ccSalesDynamic.AxisY.Add(new Axis { LabelFormatter = value => value.ToString("N0"), FontSize = 10, MinValue = 0 });
+            //    dates.Add(date);
+            //    labelsX.Add($"{dayOfWeek}\n{date.ToString("d")}");
+            //}
+
+            ccSalesDynamic.AxisX.Clear();
+
+            ccSalesDynamic.AxisX.Add(new Axis { Labels = labelsX, Separator = new LiveCharts.Wpf.Separator { Step = 1, IsEnabled = true }, FontSize=10, MinValue=0, MaxValue=10});
+
+            var fromSum = new Axis();
+
+            var fromCount = new Axis {Separator = new LiveCharts.Wpf.Separator{Step = 1 } };
+
+            ccSalesDynamic.AxisY.Clear();           
+
+            using (_context = new User102Context())
+            {
+                var sales = _context.SalesToCharts.Where(s => s.Date <= DateOnly.FromDateTime(dates.Last()) 
+                        && s.Date >= DateOnly.FromDateTime(dates.First())).OrderBy(s => s.Date).ToList();
+
+                if (rbSum.IsChecked == true)
+                {
+                    ccSalesDynamic.AxisY.Add(fromSum);
+                    var values = new ChartValues<decimal>();
+                    foreach (var date in dates)
+                    {
+                        var sale = sales.FirstOrDefault(s => s.Date == DateOnly.FromDateTime(date));
+                        values.Add(sale?.TotalPrice ?? 0m);
+                    }
+                    var series = new SeriesCollection { new ColumnSeries { Title = "Продажи", Values = values } };
+
+                    ccSalesDynamic.Series = series;
+                }
+                if (rbCount.IsChecked == true)
+                {
+                    ccSalesDynamic.AxisY.Add(fromCount);
+                    var values = new ChartValues<int>();
+
+                    foreach (var date in dates)
+                    {
+                        var sale = sales.FirstOrDefault(s => s.Date == DateOnly.FromDateTime(date));
+                        values.Add(sale?.SalesCount ?? 0);
+                    }
+                    var series = new SeriesCollection { new ColumnSeries { Title = "Продажи", Values = values } };
+
+                    ccSalesDynamic.Series = series;
+                }                                              
+            }
+        }
+
+        private void rb_checked(object sender, RoutedEventArgs e)
+        {
+            if (ccSalesDynamic != null) InitColumnChart();
         }
     }
 }

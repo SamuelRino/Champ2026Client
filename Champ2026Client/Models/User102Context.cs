@@ -35,6 +35,8 @@ public partial class User102Context : DbContext
 
     public virtual DbSet<Sale> Sales { get; set; }
 
+    public virtual DbSet<SalesToChart> SalesToCharts { get; set; }
+
     public virtual DbSet<ServicePriority> ServicePriorities { get; set; }
 
     public virtual DbSet<Status> Statuses { get; set; }
@@ -230,6 +232,18 @@ public partial class User102Context : DbContext
                 .HasForeignKey(d => d.ProductId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_sales_products");
+        });
+
+        modelBuilder.Entity<SalesToChart>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("SalesToChart");
+
+            entity.Property(e => e.SalesCount).HasColumnName("sales_count");
+            entity.Property(e => e.TotalPrice)
+                .HasColumnType("decimal(38, 2)")
+                .HasColumnName("total_price");
         });
 
         modelBuilder.Entity<ServicePriority>(entity =>

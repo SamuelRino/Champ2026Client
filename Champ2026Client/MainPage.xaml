@@ -49,6 +49,11 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
+                <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
+                    <RadioButton x:Name="rbSum" Content="По сумме" IsChecked="True" Margin="5" Checked="rb_checked" />
+                    <RadioButton x:Name="rbCount" Content="По количеству" Margin="5" Checked="rb_checked"/>
+                </StackPanel>
+
                 <lvc:CartesianChart x:Name="ccSalesDynamic" Grid.Row="2"/>
             </Grid>
         </GroupBox>

@@ -39,10 +39,11 @@
         </Expander>
 
         <Grid Background="DarkGray" Grid.Row="1">
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="40"/>
-                <ColumnDefinition x:Name="cdColumn1" Width="0"/>
-                <ColumnDefinition x:Name="cdColumn2" Width="0"/>
+                <ColumnDefinition x:Name="cdColumn1" Width="auto"/>
+                <ColumnDefinition x:Name="cdColumn2" Width="25"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -65,10 +66,10 @@
             <Image Source="/images/cogs.png" Grid.Row="5" VerticalAlignment="Top"/>
 
             <TextBlock Text="Главная" Grid.Row="1" Grid.Column="1"/>
+            <Button x:Name="btnMainPage" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1" BorderBrush="Transparent" Background="Transparent"/>
 
             <TextBlock Text="Монитор ТА" Grid.Row="2" Grid.Column="1"/>
-
-            <TextBlock Text="Главная" Grid.Row="1" Grid.Column="1"/>
+            <Button x:Name="btnVMDisplay" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1" BorderBrush="Transparent" Background="Transparent"/>
 
             <TextBlock Grid.Row="3" Grid.Column="1" Text="Детальные отчёты"/>
             <Expander Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" Grid.ColumnSpan="2" FlowDirection="RightToLeft">
