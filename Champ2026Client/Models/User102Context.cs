@@ -43,6 +43,8 @@ public partial class User102Context : DbContext
 
     public virtual DbSet<User> Users { get; set; }
 
+    public virtual DbSet<UserLogin> UserLogins { get; set; }
+
     public virtual DbSet<VendingMachine> VendingMachines { get; set; }
 
     public virtual DbSet<WorkMode> WorkModes { get; set; }
@@ -166,11 +168,11 @@ public partial class User102Context : DbContext
 
         modelBuilder.Entity<PaymentMethod>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("payment_methods");
+            entity.ToTable("payment_methods");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id)
+                .ValueGeneratedNever()
+                .HasColumnName("id");
             entity.Property(e => e.PaymentMethod1)
                 .HasMaxLength(15)
                 .HasColumnName("payment_method");
@@ -228,6 +230,11 @@ public partial class User102Context : DbContext
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("total_price");
 
+            entity.HasOne(d => d.PaymentMethod).WithMany(p => p.Sales)
+                .HasForeignKey(d => d.PaymentMethodId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_sales_payment_methods");
+
             entity.HasOne(d => d.Product).WithMany(p => p.Sales)
                 .HasForeignKey(d => d.ProductId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
@@ -284,7 +291,6 @@ public partial class User102Context : DbContext
                 .HasColumnName("email");
             entity.Property(e => e.FullName)
                 .HasMaxLength(50)
-                .IsUnicode(false)
                 .HasColumnName("full_name");
             entity.Property(e => e.Image)
                 .IsUnicode(false)
@@ -297,9 +303,30 @@ public partial class User102Context : DbContext
                 .IsUnicode(false)
                 .HasColumnName("phone");
             entity.Property(e => e.Role)
-                .HasMaxLength(15)
-                .IsUnicode(false)
+                .HasMaxLength(50)
                 .HasColumnName("role");
+        });
+
+        modelBuilder.Entity<UserLogin>(entity =>
+        {
+            entity.ToTable("user_logins");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Login)
+                .HasMaxLength(100)
+                .HasColumnName("login");
+            entity.Property(e => e.Password)
+                .HasMaxLength(100)
+                .HasColumnName("password");
+            entity.Property(e => e.UserId)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("user_id");
+
+            entity.HasOne(d => d.User).WithMany(p => p.UserLogins)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_user_logins_users");
         });
 
         modelBuilder.Entity<VendingMachine>(entity =>

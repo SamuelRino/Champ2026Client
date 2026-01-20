@@ -17,5 +17,7 @@ public partial class Sale
 
     public int PaymentMethodId { get; set; }
 
+    public virtual PaymentMethod PaymentMethod { get; set; } = null!;
+
     public virtual Product Product { get; set; } = null!;
 }

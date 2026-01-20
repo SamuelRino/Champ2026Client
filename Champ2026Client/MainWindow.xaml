@@ -6,8 +6,8 @@
     xmlns:local="clr-namespace:Champ2026Client"    
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="MainWindow"
-    Width="1000"
-    Height="650"
+    Width="1200"
+    Height="850"
     Loaded="Window_Loaded"
     mc:Ignorable="d">
     <Grid>
@@ -22,19 +22,18 @@
 
         <Image Grid.ColumnSpan="2" Source="/images/Logo.png"  HorizontalAlignment="Left"/>
 
-        <Expander FlowDirection="RightToLeft" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1" Grid.RowSpan="2" Panel.ZIndex="10" Background="#00000000">
+        <Expander FlowDirection="RightToLeft" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1" Grid.RowSpan="2" Panel.ZIndex="2" Background="#00000000">
             <Expander.Header>
                 <StackPanel Orientation="Horizontal" Height="55" FlowDirection="LeftToRight">
-                    <Image x:Name="photo" Source="/images/search.png"/>
+                    <Image x:Name="imageUserPhoto" Source="/images/search.png"/>
                     <StackPanel Margin="5" VerticalAlignment="Center" >
-                        <TextBlock Text="Автоматов А. А."/>
-                        <TextBlock Text="Администратор"/>
+                        <TextBlock x:Name="tbUserFullName" Text="Автоматов А. А."/>
+                        <TextBlock x:Name="tbUserRole" Text="Администратор"/>
                     </StackPanel>
-
                 </StackPanel>
             </Expander.Header>
             <StackPanel>
-                <TextBlock Text="121" FontSize="122"/>
+                <TextBlock Text="121"/>
             </StackPanel>
         </Expander>
 

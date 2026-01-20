@@ -1,4 +1,7 @@
-﻿using System.Text;
+﻿using Champ2026Client.Models;
+using System.Buffers.Text;
+using System.IO;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -12,6 +15,11 @@ using System.Windows.Shapes;
 
 namespace Champ2026Client
 {
+    public static class Data
+    {
+        public static User? user;
+    }
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -35,8 +43,17 @@ namespace Champ2026Client
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
-        {           
+        {
+            BitmapImage image = new();
+            image.BeginInit();
+            image.StreamSource = new MemoryStream(Convert.FromBase64String(Data.user.Image));
+            image.EndInit();
+            imageUserPhoto.Source = image;
 
+            var parts = Data.user.FullName.Split(' ');
+
+            tbUserFullName.Text = $"{parts[0]} {parts[1][0]}. {parts[2][0]}.";
+            tbUserRole.Text = Data.user.Role;
         }
 
         private void btnExpand_Click(object sender, RoutedEventArgs e)

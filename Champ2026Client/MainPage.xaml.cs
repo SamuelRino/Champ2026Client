@@ -32,7 +32,7 @@ namespace Champ2026Client
             InitializeComponent();
             timer = new DispatcherTimer();
             timer.Tick += (sender,e) => Timer_tick();
-            timer.Interval = TimeSpan.FromSeconds(30);
+            timer.Interval = TimeSpan.FromSeconds(10);
             Timer_tick();
             timer.Start();
         }
@@ -54,7 +54,7 @@ namespace Champ2026Client
             if (pcNetState.Series.Count == 0) InitPie();
             else UpdatePie();
 
-            if (ccSalesDynamic.Series.Count == 0) InitColumnChart();
+            //if (ccSalesDynamic.Series.Count == 0) InitColumnChart();
 
             effective = Math.Round(effective, 2) * 100;
 

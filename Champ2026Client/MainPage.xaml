@@ -37,7 +37,7 @@
         </GroupBox>
 
         <GroupBox Grid.Column="1" Grid.Row="1" Margin="5" Header="Состояние сети">
-            <lvc:PieChart InnerRadius="35" x:Name="pcNetState">
+            <lvc:PieChart InnerRadius="50" x:Name="pcNetState">
             </lvc:PieChart>
         </GroupBox>
 
@@ -54,7 +54,7 @@
                     <RadioButton x:Name="rbCount" Content="По количеству" Margin="5" Checked="rb_checked"/>
                 </StackPanel>
 
-                <lvc:CartesianChart x:Name="ccSalesDynamic" Grid.Row="2"/>
+                <lvc:CartesianChart x:Name="ccSalesDynamic" Grid.Row="2" DisableAnimations="True"/>
             </Grid>
         </GroupBox>
     </Grid>

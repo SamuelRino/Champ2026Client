@@ -7,7 +7,7 @@ public partial class SalesToChart
 {
     public DateOnly? Date { get; set; }
 
-    public decimal TotalPrice { get; set; }
+    public decimal? TotalPrice { get; set; }
 
-    public int SalesCount { get; set; }
+    public int? SalesCount { get; set; }
 }

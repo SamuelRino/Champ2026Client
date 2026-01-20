@@ -25,6 +25,8 @@ public partial class User
 
     public virtual ICollection<Maintenance> Maintenances { get; set; } = new List<Maintenance>();
 
+    public virtual ICollection<UserLogin> UserLogins { get; set; } = new List<UserLogin>();
+
     public virtual ICollection<VendingMachine> VendingMachineEngineers { get; set; } = new List<VendingMachine>();
 
     public virtual ICollection<VendingMachine> VendingMachineManagers { get; set; } = new List<VendingMachine>();
