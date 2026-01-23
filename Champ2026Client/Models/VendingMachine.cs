@@ -81,7 +81,9 @@ public partial class VendingMachine
 
     public string Coordinates { get; set; } = null!;
 
-    public string Timezone { get; set; } = null!;
+    public int Timezone { get; set; }
+
+    public bool? IsDeleted { get; set; }
 
     public virtual Company Company { get; set; } = null!;
 
@@ -106,6 +108,8 @@ public partial class VendingMachine
     public virtual Status Status { get; set; } = null!;
 
     public virtual User Technician { get; set; } = null!;
+
+    public virtual Timezone TimezoneNavigation { get; set; } = null!;
 
     public virtual User User { get; set; } = null!;
 

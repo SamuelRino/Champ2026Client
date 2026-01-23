@@ -39,7 +39,7 @@ namespace Champ2026Client
                     bool verify = PasswordHasher.VerifyPassword(user.Password, Password);
                     if (verify)
                     {
-                        Data.user = c.Users.FirstOrDefault(u => u.Id == user.UserId);
+                        DataUser.user = c.Users.FirstOrDefault(u => u.Id == user.UserId);
                         MainWindow w = new();
                         w.Show();
                         this.Close();

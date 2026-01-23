@@ -5,22 +5,15 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Champ2026Client"
       mc:Ignorable="d" 
-      d:DesignHeight="800" d:DesignWidth="600"
-      Title="AdministrationVMPage">
+      d:DesignHeight="800" d:DesignWidth="1000"
+      Title="AdministrationVMPage" Loaded="Page_Loaded" >
 
-    <Grid>
+    <Grid Margin="20">
         <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="70"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -29,19 +22,104 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="1" Margin="10">
-            <Label Content="Название ТА *"/>
-            <TextBox x:Name="tbName"/>
-        </StackPanel>
-        
-        <StackPanel Grid.Row="1" Grid.Column="1" Margin="10">
-            <Label Content="Модель ТА *"/>
-            <ComboBox x:Name="cbModel"/>
+        <StackPanel>
+            <TextBlock Text="Торговые автоматы" FontSize="30"/>
+            <TextBlock x:Name="tbRecordsCount" Text="Всего найдено 9 шт."/>
         </StackPanel>
 
-        <StackPanel Grid.Row="1" Grid.Column="1" Margin="10">
-            <Label Content="Модель ТА *"/>
-            <TextBox x:Name="tbModel"/>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <Label Content="Показать" VerticalAlignment="Center"/>
+            <ComboBox x:Name="cbShowRecords" VerticalAlignment="Center" Width="50" SelectedIndex="0" SelectionChanged="cbShowRecords_SelectionChanged" >
+                <ComboBoxItem Content="Все"/>
+                <ComboBoxItem Content="5"/>
+                <ComboBoxItem Content="4"/>
+            </ComboBox>
+            <Label Content="записей" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <TextBox Grid.Row="1" Grid.Column="1" Margin="10"/>
+
+        <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="btnAddMachine" Margin="5" Click="btnAddMachine_Click">
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <Image Source="/images/plus.png" Width="30" VerticalAlignment="Center"/>
+                    <TextBlock Text="Добавить" VerticalAlignment="Center" FontSize="20"/>
+                </StackPanel>
+            </Button>
+            <Button Margin="5">
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <Image Source="/images/share.png" Width="25" VerticalAlignment="Center"/>
+                    <TextBlock Text="Экспорт" VerticalAlignment="Center" FontSize="20"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+        <ListView x:Name="lvMachines" Grid.Row="2" Grid.ColumnSpan="3">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" Width="80" DisplayMemberBinding="{Binding SerialNumber}"/>
+                    <GridViewColumn Header="Название автомата" Width="150" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Модель" Width="150">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock TextWrapping="Wrap" Text="{Binding Model.Model1}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Компания" Width="150">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock TextWrapping="Wrap" Text="{Binding Company.Company1}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Адрес/место" Width="150">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock TextWrapping="Wrap" Text="{Binding Location}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="В работе с" Width="70">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock TextWrapping="Wrap" Text="{Binding InstallDate, StringFormat='dd.MM.yyyy'}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Действия" Width="80">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Button Width="20" Height="20" Click="btnEdit_click">
+                                        <Image Source="/images/pencil.png"/>
+                                    </Button>
+                                    <Button Width="20" Height="20" Click="btnDelete_click">
+                                        <Image Source="/images/trash-o.png"/>
+                                    </Button>
+                                    <Button Width="20" Height="20" Click="btnLock_click">
+                                        <Image Source="/images/unlock.png"/>
+                                    </Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        
+        <TextBlock x:Name="tbShowing" Text="Записи с 1 до 10 из 10 записей" Grid.Row="3" VerticalAlignment="Center"/>
+
+        <StackPanel Grid.Row="3" Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+            <Button x:Name="btnPreviousPage" Click="btnPreviousPage_Click" Width="40">
+                <Image Source="/images/angle-left.png" />
+            </Button>
+            <StackPanel x:Name="spPageButtons" Orientation="Horizontal">
+                
+            </StackPanel>
+            <Button x:Name="btnNextPage" Click="btnNextPage_Click" Width="40">
+                <Image Source="/images/angle-right.png"/>
+            </Button>
         </StackPanel>
     </Grid>
 </Page>

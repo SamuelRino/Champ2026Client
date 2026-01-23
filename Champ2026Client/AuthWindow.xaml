@@ -9,9 +9,9 @@
     <Grid Margin="10">
         <StackPanel>
             <Label Content="Логин" HorizontalAlignment="Center"/>
-            <TextBox x:Name="tbLogin"/>
+            <TextBox x:Name="tbLogin" Text="novikov"/>
             <Label Content="Пароль" HorizontalAlignment="Center"/>
-            <PasswordBox x:Name="tbPassword"/>
+            <PasswordBox x:Name="tbPassword" Password="322"/>
             <Button x:Name="btnAuth" Content="Войти" Click="btnAuth_Click" IsDefault="True"/>
             <Button x:Name="btnCancel" Content="Отмена" IsCancel="True" Click="btnCancel_Click"/>
         </StackPanel>

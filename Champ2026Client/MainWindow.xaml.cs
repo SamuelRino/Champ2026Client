@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 
 namespace Champ2026Client
 {
-    public static class Data
+    public static class DataUser
     {
         public static User? user;
     }
@@ -29,7 +29,7 @@ namespace Champ2026Client
         public MainWindow()
         {
             InitializeComponent();
-            NavigateToPage1(null, null);
+            NavigateToPage2(null, null);
         }
 
         private void NavigateToPage1(object sender, RoutedEventArgs e)
@@ -39,21 +39,21 @@ namespace Champ2026Client
 
         private void NavigateToPage2(object sender, RoutedEventArgs e)
         {
-            fMainFrame.Navigate(new MainPage());
+            fMainFrame.Navigate(new AdministrationVMPage());
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             BitmapImage image = new();
             image.BeginInit();
-            image.StreamSource = new MemoryStream(Convert.FromBase64String(Data.user.Image));
+            image.StreamSource = new MemoryStream(Convert.FromBase64String(DataUser.user.Image));
             image.EndInit();
             imageUserPhoto.Source = image;
 
-            var parts = Data.user.FullName.Split(' ');
+            var parts = DataUser.user.FullName.Split(' ');
 
             tbUserFullName.Text = $"{parts[0]} {parts[1][0]}. {parts[2][0]}.";
-            tbUserRole.Text = Data.user.Role;
+            tbUserRole.Text = DataUser.user.Role;
         }
 
         private void btnExpand_Click(object sender, RoutedEventArgs e)

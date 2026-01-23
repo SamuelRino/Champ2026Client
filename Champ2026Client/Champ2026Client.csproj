@@ -12,8 +12,15 @@
     <None Remove="cogs.png" />
     <None Remove="desktop.png" />
     <None Remove="file-text-o.png" />
+    <None Remove="images\angle-left.png" />
+    <None Remove="images\angle-right.png" />
     <None Remove="images\bars.png" />
     <None Remove="images\Logo.png" />
+    <None Remove="images\pencil.png" />
+    <None Remove="images\plus.png" />
+    <None Remove="images\share.png" />
+    <None Remove="images\trash-o.png" />
+    <None Remove="images\unlock.png" />
     <None Remove="search.png" />
     <None Remove="shopping-cart.png" />
   </ItemGroup>
@@ -31,13 +38,20 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="images\angle-left.png" />
+    <Resource Include="images\angle-right.png" />
     <Resource Include="images\bars.png" />
     <Resource Include="images\cogs.png" />
     <Resource Include="images\desktop.png" />
     <Resource Include="images\file-text-o.png" />
     <Resource Include="images\Logo.png" />
+    <Resource Include="images\pencil.png" />
+    <Resource Include="images\plus.png" />
     <Resource Include="images\search.png" />
+    <Resource Include="images\share.png" />
     <Resource Include="images\shopping-cart.png" />
+    <Resource Include="images\trash-o.png" />
+    <Resource Include="images\unlock.png" />
   </ItemGroup>
 
 </Project>

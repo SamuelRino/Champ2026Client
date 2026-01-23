@@ -41,6 +41,8 @@ public partial class User102Context : DbContext
 
     public virtual DbSet<Status> Statuses { get; set; }
 
+    public virtual DbSet<Timezone> Timezones { get; set; }
+
     public virtual DbSet<User> Users { get; set; }
 
     public virtual DbSet<UserLogin> UserLogins { get; set; }
@@ -53,7 +55,7 @@ public partial class User102Context : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("server=192.168.24.15; database=user102; user=user102; password=1234567890; encrypt=false");
+        => optionsBuilder.UseSqlServer("server=192.168.24.15;database=user102;user=user102;password=1234567890;encrypt=false");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -277,6 +279,19 @@ public partial class User102Context : DbContext
                 .HasColumnName("status");
         });
 
+        modelBuilder.Entity<Timezone>(entity =>
+        {
+            entity.ToTable("timezones");
+
+            entity.Property(e => e.Id)
+                .ValueGeneratedNever()
+                .HasColumnName("id");
+            entity.Property(e => e.Timezone1)
+                .HasMaxLength(5)
+                .IsUnicode(false)
+                .HasColumnName("timezone");
+        });
+
         modelBuilder.Entity<User>(entity =>
         {
             entity.ToTable("users");
@@ -361,6 +376,7 @@ public partial class User102Context : DbContext
             entity.Property(e => e.InventoryDate)
                 .HasColumnType("datetime")
                 .HasColumnName("inventory_date");
+            entity.Property(e => e.IsDeleted).HasColumnName("is_deleted");
             entity.Property(e => e.KitOnlineId)
                 .HasMaxLength(10)
                 .IsUnicode(false)
@@ -416,10 +432,7 @@ public partial class User102Context : DbContext
                 .HasMaxLength(50)
                 .IsUnicode(false)
                 .HasColumnName("technician_id");
-            entity.Property(e => e.Timezone)
-                .HasMaxLength(5)
-                .IsUnicode(false)
-                .HasColumnName("timezone");
+            entity.Property(e => e.Timezone).HasColumnName("timezone");
             entity.Property(e => e.TotalIncome)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("total_income");
@@ -481,6 +494,11 @@ public partial class User102Context : DbContext
                 .HasForeignKey(d => d.TechnicianId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_vending_machines_users3");
+
+            entity.HasOne(d => d.TimezoneNavigation).WithMany(p => p.VendingMachines)
+                .HasForeignKey(d => d.Timezone)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_vending_machines_timezones");
 
             entity.HasOne(d => d.User).WithMany(p => p.VendingMachineUsers)
                 .HasForeignKey(d => d.UserId)
