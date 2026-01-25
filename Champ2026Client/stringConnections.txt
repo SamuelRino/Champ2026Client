@@ -1,0 +1,2 @@
+﻿"server=192.168.24.15;database=user102;user=user102;password=1234567890;encrypt=false"
+"server=localhost\\SqlExpress;database=user102;user=ИСП-31;password=1234567890;encrypt=false"
