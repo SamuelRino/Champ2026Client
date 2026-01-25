@@ -36,7 +36,7 @@ namespace Champ2026Client
             {
                 using (User102Context c = new())
                 {                   
-                    var machines = c.VendingMachines.Include(m => m.WorkMode).Include(m => m.Model);
+                    var machines = c.VendingMachines.Include(m => m.WorkMode).Include(m => m.Model).Include(m => m.TimezoneNavigation);
                     var machine = machines.FirstOrDefault(m => m.Id == DataMachine.machine.Id);
                     cbModel.DataContext = machine;
                     cbWorkMode.DataContext = machine;

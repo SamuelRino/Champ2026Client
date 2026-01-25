@@ -40,7 +40,7 @@
 
         <StackPanel Grid.Row="1" Grid.Column="2" Margin="5">
             <Label Content="Режим работы *"/>
-            <ComboBox x:Name="cbWorkMode" Height="30" SelectedItem="{Binding Workmode.Workmode1}"/>
+            <ComboBox x:Name="cbWorkMode" Height="30" SelectedItem="{Binding WorkMode.WorkMode1}"/>
         </StackPanel>
 
         <StackPanel Grid.Row="2" Grid.Column="0" Margin="5">
@@ -70,7 +70,7 @@
 
         <StackPanel Grid.Row="3" Grid.Column="2" Margin="5">
             <Label Content="Часовой пояс *"/>
-            <ComboBox x:Name="cbTimezone" Height="30"/>
+            <ComboBox x:Name="cbTimezone" Height="30" SelectedItem="{Binding TimezoneNavigation.Timezone1}"/>
         </StackPanel>
     </Grid>
 </Window>
