@@ -9,7 +9,8 @@
     Width="1200"
     Height="850"
     Loaded="Window_Loaded"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>

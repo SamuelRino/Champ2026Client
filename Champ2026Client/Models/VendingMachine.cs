@@ -21,19 +21,19 @@ public partial class VendingMachine
 
     public bool QrPayment { get; set; }
 
-    public decimal TotalIncome { get; set; }
+    public decimal? TotalIncome { get; set; }
 
-    public int SerialNumber { get; set; }
+    public int? SerialNumber { get; set; }
 
     public int? InventNumber { get; set; }
 
     public DateTime? ManufactureDate { get; set; }
 
-    public DateTime InstallDate { get; set; }
+    public DateTime? InstallDate { get; set; }
 
     public DateTime? SystemDate { get; set; }
 
-    public DateTime LastMaintenanceDate { get; set; }
+    public DateTime? LastMaintenanceDate { get; set; }
 
     public int? InterverificationInterval { get; set; }
 
@@ -45,19 +45,19 @@ public partial class VendingMachine
 
     public int StatusId { get; set; }
 
-    public string UserId { get; set; } = null!;
+    public string? UserId { get; set; }
 
-    public string RfidCashCollection { get; set; } = null!;
+    public string? RfidCashCollection { get; set; }
 
-    public string RfidLoading { get; set; } = null!;
+    public string? RfidLoading { get; set; }
 
-    public string RfidService { get; set; } = null!;
+    public string? RfidService { get; set; }
 
     public string? Notes { get; set; }
 
     public int WorkModeId { get; set; }
 
-    public string KitOnlineId { get; set; } = null!;
+    public string? KitOnlineId { get; set; }
 
     public int CompanyId { get; set; }
 
@@ -73,13 +73,13 @@ public partial class VendingMachine
 
     public int? NotificationTemplateId { get; set; }
 
-    public string WorkingHours { get; set; } = null!;
+    public string? WorkingHours { get; set; }
 
     public string Place { get; set; } = null!;
 
-    public int OperatorId { get; set; }
+    public int? OperatorId { get; set; }
 
-    public string Coordinates { get; set; } = null!;
+    public string? Coordinates { get; set; }
 
     public int Timezone { get; set; }
 
@@ -99,7 +99,7 @@ public partial class VendingMachine
 
     public virtual NotificationTemplate? NotificationTemplate { get; set; }
 
-    public virtual Operator Operator { get; set; } = null!;
+    public virtual Operator? Operator { get; set; }
 
     public virtual ICollection<Product> Products { get; set; } = new List<Product>();
 
@@ -111,7 +111,7 @@ public partial class VendingMachine
 
     public virtual Timezone TimezoneNavigation { get; set; } = null!;
 
-    public virtual User User { get; set; } = null!;
+    public virtual User? User { get; set; }
 
     public virtual WorkMode WorkMode { get; set; } = null!;
 }

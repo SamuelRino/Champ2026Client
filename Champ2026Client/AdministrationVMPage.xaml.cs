@@ -52,7 +52,9 @@ namespace Champ2026Client
             DataMachine.machine = machine; 
 
             AddEditMachine w = new AddEditMachine();
-            w.Show();
+            w.ShowDialog();
+
+            Refresh();
         }
 
         private void btnDelete_click(object sender, RoutedEventArgs e)
@@ -181,7 +183,8 @@ namespace Champ2026Client
         {
             DataMachine.machine = null;
             AddEditMachine w = new AddEditMachine();
-            w.Show();
+            w.ShowDialog();
+            Refresh();
         }
     }
 }

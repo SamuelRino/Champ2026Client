@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Champ2026Client"
         mc:Ignorable="d"
-        Title="AddEditMachine" Height="900" Width="700">
+        Title="" Height="900" Width="700" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -24,53 +24,140 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
 
+        <TextBlock x:Name="tbTitle" Text="Создание торгового автомата" VerticalAlignment="Center" FontSize="20" Grid.ColumnSpan="2" Foreground="DodgerBlue" Margin="10"/>
+
         <StackPanel Grid.Row="1" Margin="5">
             <Label Content="Название ТА *"/>
-            <TextBox x:Name="tbName" Height="30"/>
+            <TextBox x:Name="tbName" Height="30" Text="{Binding Name}"/>
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="1" Margin="5">
             <Label Content="Модель ТА *"/>
-            <ComboBox x:Name="cbModel" Height="30" SelectedItem="{Binding Model.Model1}"/>
+            <ComboBox x:Name="cbModel" Height="30" SelectedItem="{Binding Path=Model}"/>
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="2" Margin="5">
             <Label Content="Режим работы *"/>
-            <ComboBox x:Name="cbWorkMode" Height="30" SelectedItem="{Binding WorkMode.WorkMode1}"/>
+            <ComboBox x:Name="cbWorkMode" Height="30" SelectedItem="{Binding Path=WorkMode}"/>
         </StackPanel>
 
         <StackPanel Grid.Row="2" Grid.Column="0" Margin="5">
             <Label Content="Адрес *"/>
-            <TextBox x:Name="tbLocation" Height="30"/>
+            <TextBox x:Name="tbLocation" Height="30" Text="{Binding Location}"/>
         </StackPanel>
 
         <StackPanel Grid.Row="2" Grid.Column="1" Margin="5">
             <Label Content="Место *"/>
-            <TextBox x:Name="tbPlace" Height="30"/>
+            <TextBox x:Name="tbPlace" Height="30" Text="{Binding Place}"/>
         </StackPanel>
 
         <StackPanel Grid.Row="2" Grid.Column="2" Margin="5">
             <Label Content="Координаты"/>
-            <TextBox x:Name="tbCords" Height="30"/>
+            <TextBox x:Name="tbCords" Height="30" Text="{Binding Coordinates}"/>
         </StackPanel>
 
         <StackPanel Grid.Row="3" Grid.Column="0" Margin="5">
             <Label Content="Номер автомата *"/>
-            <TextBox x:Name="tbSerialNumber" Height="30"/>
+            <TextBox x:Name="tbSerialNumber" Height="30" Text="{Binding SerialNumber}"/>
         </StackPanel>
 
         <StackPanel Grid.Row="3" Grid.Column="1" Margin="5">
             <Label Content="Время работы (формат 08:00-22:00)"/>
-            <TextBox x:Name="tbWorkingHours" Height="30"/>
+            <TextBox x:Name="tbWorkingHours" Height="30" Text="{Binding WorkingHours}"/>
         </StackPanel>
 
         <StackPanel Grid.Row="3" Grid.Column="2" Margin="5">
             <Label Content="Часовой пояс *"/>
-            <ComboBox x:Name="cbTimezone" Height="30" SelectedItem="{Binding TimezoneNavigation.Timezone1}"/>
+            <ComboBox x:Name="cbTimezone" Height="30" SelectedItem="{Binding Path=TimezoneNavigation}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="4" Grid.Column="0" Margin="5">
+            <Label Content="Шаблон крит. значений"/>
+            <ComboBox x:Name="cbCriticalTresholdTemplate" Height="30" SelectedItem="{Binding Path=CriticalTresholdTemplate}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="4" Grid.Column="1" Margin="5">
+            <Label Content="Шаблон уведомлений"/>
+            <ComboBox x:Name="cbNotificationTemplate" Height="30" SelectedItem="{Binding Path=NotificationTemplate}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="4" Grid.Column="2" Margin="5">
+            <Label Content="Компания"/>
+            <ComboBox x:Name="cbCompany" Height="30" SelectedItem="{Binding Path=Company}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="5" Grid.Column="0" Margin="5">
+            <Label Content="Клиент"/>
+            <ComboBox x:Name="cbUser" Height="30" SelectedItem="{Binding Path=User}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="5" Grid.Column="1" Margin="5">
+            <Label Content="Менеджер"/>
+            <ComboBox x:Name="cbManager" Height="30" SelectedItem="{Binding Path=Manager}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="5" Grid.Column="2" Margin="5">
+            <Label Content="Инженер"/>
+            <ComboBox x:Name="cbEngineer" Height="30" SelectedItem="{Binding Path=Engineer}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="6" Grid.Column="0" Margin="5">
+            <Label Content="Техник-оператор"/>
+            <ComboBox x:Name="cbOperator" Height="30" SelectedItem="{Binding Path=Technician}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Margin="5">
+            <Label Content="Платежные системы"/>
+            <GroupBox>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <CheckBox x:Name="cbCoinAcceptor" VerticalAlignment="Center" IsChecked="{Binding CoinAcceptor}"/>
+                    <Label Content="Монетопр."/>
+                    <CheckBox x:Name="cbBillAcceptor" VerticalAlignment="Center" IsChecked="{Binding BillAcceptor}"/>
+                    <Label Content="Купюропр."/>
+                    <CheckBox x:Name="cbCashless" VerticalAlignment="Center" IsChecked="{Binding CashlessPayment}"/>
+                    <Label Content="Модуль б/н опл."/>
+                    <CheckBox x:Name="cbQR" VerticalAlignment="Center" IsChecked="{Binding QrPayment}"/>
+                    <Label Content="QR-платежи"/>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="7" Grid.Column="0" Margin="5">
+            <Label Content="RFID карты обслуживания"/>
+            <TextBox x:Name="tbRfidService" Height="30" Text="{Binding RfidService}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="7" Grid.Column="1" Margin="5">
+            <Label Content="RFID карты инкассации"/>
+            <TextBox x:Name="tbRfidCashCollection" Height="30" Text="{Binding RfidCashCollection}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="7" Grid.Column="2" Margin="5">
+            <Label Content="RFID карты загрузки"/>
+            <TextBox x:Name="tbRfidLoading" Height="30" Text="{Binding RfidLoading}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="8" Grid.Column="0" Margin="5">
+            <Label Content="Id кассы Kit Online"/>
+            <TextBox x:Name="tbKitOnline" Height="30" Text="{Binding KitOnlineId}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="8" Grid.Column="1" Margin="5">
+            <Label Content="Приоритет обслуживания *"/>
+            <ComboBox x:Name="cbServicePriority" Height="30" SelectedItem="{Binding Path=ServicePriority}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="3" Margin="5">
+            <Label Content="Примечания"/>
+            <TextBox Height="40" Text="{Binding Notes}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="10" Orientation="Horizontal" Margin="10">
+            <Button x:Name="btnSave" Foreground="White" Background="DodgerBlue" Content="Создать" VerticalAlignment="Center" Padding="5" Click="btnSave_Click" />
+            <Button x:Name="btnCancel" Content="Отменить" VerticalAlignment="Center" Padding="5" Margin="10,0,0,0" Click="btnCancel_Click"/>
         </StackPanel>
     </Grid>
 </Window>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Champ2026Client"
         mc:Ignorable="d"
-        Title="AuthWindow" Height="200" Width="250">
+        Title="AuthWindow" Height="200" Width="250" WindowStartupLocation="CenterScreen">
     <Grid Margin="10">
         <StackPanel>
             <Label Content="Логин" HorizontalAlignment="Center"/>

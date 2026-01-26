@@ -55,7 +55,7 @@ public partial class User102Context : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("server=localhost\\SqlExpress;database=user102;user=ИСП-31;password=1234567890;encrypt=false");
+        => optionsBuilder.UseSqlServer("server=192.168.24.15;database=user102;user=user102;password=1234567890;encrypt=false");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -66,7 +66,6 @@ public partial class User102Context : DbContext
                 .HasColumnName("id");
             entity.Property(e => e.Company1)
                 .HasMaxLength(50)
-                .IsUnicode(false)
                 .HasColumnName("company");
         });
 
@@ -79,7 +78,6 @@ public partial class User102Context : DbContext
                 .HasColumnName("id");
             entity.Property(e => e.Template)
                 .HasMaxLength(15)
-                .IsUnicode(false)
                 .HasColumnName("template");
         });
 
@@ -152,7 +150,6 @@ public partial class User102Context : DbContext
                 .HasColumnName("id");
             entity.Property(e => e.Template)
                 .HasMaxLength(15)
-                .IsUnicode(false)
                 .HasColumnName("template");
         });
 
@@ -423,7 +420,9 @@ public partial class User102Context : DbContext
                 .HasColumnName("rfid_service");
             entity.Property(e => e.SerialNumber).HasColumnName("serial_number");
             entity.Property(e => e.ServicePriorityId).HasColumnName("service_priority_id");
-            entity.Property(e => e.StatusId).HasColumnName("status_id");
+            entity.Property(e => e.StatusId)
+                .HasDefaultValue(1)
+                .HasColumnName("status_id");
             entity.Property(e => e.SystemDate)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
@@ -477,7 +476,6 @@ public partial class User102Context : DbContext
 
             entity.HasOne(d => d.Operator).WithMany(p => p.VendingMachines)
                 .HasForeignKey(d => d.OperatorId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_vending_machines_operators");
 
             entity.HasOne(d => d.ServicePriority).WithMany(p => p.VendingMachines)
@@ -502,7 +500,6 @@ public partial class User102Context : DbContext
 
             entity.HasOne(d => d.User).WithMany(p => p.VendingMachineUsers)
                 .HasForeignKey(d => d.UserId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_vending_machines_users");
 
             entity.HasOne(d => d.WorkMode).WithMany(p => p.VendingMachines)
@@ -520,7 +517,6 @@ public partial class User102Context : DbContext
                 .HasColumnName("id");
             entity.Property(e => e.WorkMode1)
                 .HasMaxLength(15)
-                .IsUnicode(false)
                 .HasColumnName("work_mode");
         });
 
