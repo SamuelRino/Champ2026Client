@@ -23,9 +23,9 @@ public partial class VendingMachine
 
     public decimal? TotalIncome { get; set; }
 
-    public int? SerialNumber { get; set; }
+    public int SerialNumber { get; set; }
 
-    public int? InventNumber { get; set; }
+    public int InventNumber { get; set; }
 
     public DateTime? ManufactureDate { get; set; }
 

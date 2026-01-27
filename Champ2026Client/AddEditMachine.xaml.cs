@@ -1,4 +1,5 @@
 ﻿using Champ2026Client.Models;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -78,25 +79,39 @@ namespace Champ2026Client
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
-        {
-            if (DataMachine.machine != null)
-            {
-                c.SaveChanges();
-            }
-            else
-            {
-                c.VendingMachines.Add(machine);
-                c.SaveChanges();
-            }
-            MessageBox.Show("Аппарат успешно сохранён!");
-            this.Close();
+        {                     
             try
             {
-                
+                if (DataMachine.machine != null)
+                {
+                    c.SaveChanges();
+                }
+                else
+                {
+                    c.VendingMachines.Add(machine);
+                    c.SaveChanges();
+                }
+                MessageBox.Show("Аппарат успешно сохранён!");
+                this.Close();
             }
-            catch
+            catch (DbUpdateException ex)
             {
-                MessageBox.Show("Возникла ошибка при сохранении");
+                StringBuilder message = new StringBuilder();
+                message.AppendLine("Возникла ошибка при сохранении.");
+
+                int number = ((SqlException)ex.InnerException).Number;
+
+                if (number == 515)
+                {
+                    message.AppendLine("Не заполнены обязательные поля.");
+                }
+
+                if (number == 2601)
+                {
+                    message.AppendLine("Серийный номер не уникален.");
+                }
+
+                MessageBox.Show(message.ToString(), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

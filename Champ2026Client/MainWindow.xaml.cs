@@ -26,20 +26,22 @@ namespace Champ2026Client
     public partial class MainWindow : Window
     {
         private bool _menuIsExpanded = false;
+        private MainPage mainPage = new();
+        private AdministrationVMPage administrationVMPage = new();
         public MainWindow()
         {
             InitializeComponent();
-            NavigateToPage2(null, null);
+            NavigateToPage1(null, null);
         }
 
         private void NavigateToPage1(object sender, RoutedEventArgs e)
         {
-            fMainFrame.Navigate(new MainPage());
+            fMainFrame.Navigate(mainPage);
         }
 
         private void NavigateToPage2(object sender, RoutedEventArgs e)
         {
-            fMainFrame.Navigate(new AdministrationVMPage());
+            fMainFrame.Navigate(administrationVMPage);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -70,6 +72,16 @@ namespace Champ2026Client
                 cdColumn2.Width = new GridLength(25);
                 _menuIsExpanded = true;
             }
+        }
+
+        private void btnVmOpen_Click(object sender, RoutedEventArgs e)
+        {
+            NavigateToPage2(null,null);
+        }
+
+        private void btnMainPage_Click(object sender, RoutedEventArgs e)
+        {
+            NavigateToPage1(null, null);
         }
     }
 }

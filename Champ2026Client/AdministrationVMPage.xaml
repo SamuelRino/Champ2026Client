@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Champ2026Client"
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="1000"
-      Title="AdministrationVMPage" Loaded="Page_Loaded" >
+      Title="AdministrationVMPage" Loaded="Page_Loaded" KeepAlive="False">
 
     <Grid Margin="20">
         <Grid.RowDefinitions>

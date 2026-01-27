@@ -101,7 +101,7 @@ namespace Champ2026Client
                 {
                     var machines = c.VendingMachines.Include(m => m.Model).Include(m => m.Company).Where(m => m.IsDeleted != true).Skip(recordsPerPage * currentPage).Take(recordsPerPage).ToList();
                     lvMachines.ItemsSource = machines;
-                    totalRecords = c.VendingMachines.Count();
+                    totalRecords = c.VendingMachines.Where(m => m.IsDeleted != true).Count();
                     totalPages = totalRecords / recordsPerPage;
                     if (totalPages * recordsPerPage < totalRecords) totalPages++;
                     tbRecordsCount.Text = $"Всего найдено {totalRecords} шт.";

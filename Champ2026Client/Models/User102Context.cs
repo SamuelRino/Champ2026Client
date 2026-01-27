@@ -369,7 +369,9 @@ public partial class User102Context : DbContext
                 .HasColumnType("datetime")
                 .HasColumnName("install_date");
             entity.Property(e => e.InterverificationInterval).HasColumnName("interverification_interval");
-            entity.Property(e => e.InventNumber).HasColumnName("invent_number");
+            entity.Property(e => e.InventNumber)
+                .ValueGeneratedOnAdd()
+                .HasColumnName("invent_number");
             entity.Property(e => e.InventoryDate)
                 .HasColumnType("datetime")
                 .HasColumnName("inventory_date");
