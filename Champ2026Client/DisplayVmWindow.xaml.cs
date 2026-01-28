@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Champ2026Client.classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,20 @@ namespace Champ2026Client
     /// </summary>
     public partial class DisplayVmWindow : Page
     {
+        ApiService _api = new();
         public DisplayVmWindow()
         {
-            InitializeComponent();
+            InitializeComponent();           
+        }
+
+        private async void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            var display = await _api.GetDisplayVmAsync();
+            for (int i = 0; i < display.Count; i++)
+            {
+                display[i].Id = i+1;
+            }
+            lvDisplay.ItemsSource = display;
         }
     }
 }

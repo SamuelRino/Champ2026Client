@@ -28,10 +28,11 @@ namespace Champ2026Client
         private bool _menuIsExpanded = false;
         private MainPage mainPage = new();
         private AdministrationVMPage administrationVMPage = new();
+        private DisplayVmWindow displayVmPage = new();
         public MainWindow()
         {
             InitializeComponent();
-            NavigateToPage1(null, null);
+            NavigateToPage3(null, null);
         }
 
         private void NavigateToPage1(object sender, RoutedEventArgs e)
@@ -42,6 +43,11 @@ namespace Champ2026Client
         private void NavigateToPage2(object sender, RoutedEventArgs e)
         {
             fMainFrame.Navigate(administrationVMPage);
+        }
+
+        private void NavigateToPage3(object sender, RoutedEventArgs e)
+        {
+            fMainFrame.Navigate(displayVmPage);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

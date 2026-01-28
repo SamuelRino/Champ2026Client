@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Champ2026Client"
       mc:Ignorable="d" 
       d:DesignHeight="650" d:DesignWidth="800"
-      Title="DisplayVmWindow">
+      Title="DisplayVmWindow" Loaded="Page_Loaded">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -17,14 +17,103 @@
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
 
-        <ListView Grid.Row="3">
+        <ListView x:Name="lvDisplay" Grid.Row="3">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="#" Width="30"/>
-                    <GridViewColumn Header="Торговый автомат" Width="180">
+                    <GridViewColumn Header="#" Width="40" DisplayMemberBinding="{Binding Id}"/>
+                    <GridViewColumn Header="Торговый автомат" Width="250">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock TextWrapping="Wrap" />
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image x:Name="iStatus" Width="15" Grid.Column="0">
+                                        <Image.Style>
+                                            <Style TargetType="Image">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding StatusId}" Value="1">
+                                                        <Setter Property="Source" Value="/images/states/DotGreen24.png"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding StatusId}" Value="2">
+                                                        <Setter Property="Source" Value="/images/states/DotBlue24.png"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding StatusId}" Value="3">
+                                                        <Setter Property="Source" Value="/images/states/DotRed24.png"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Image.Style>
+                                    </Image>
+                                    <TextBlock TextWrapping="Wrap" Grid.Column="1" Margin="5">
+                                        <Run Text="{Binding SerialNumber}" FontSize="20"/>
+                                        <Run Text=" - "/>
+                                        <Run Text="{Binding Name}" FontSize="20"/>
+                                        <LineBreak />
+                                        <Run Text="{Binding Model}" Foreground="Gray"/>
+                                        <LineBreak/>
+                                        <Run Text="{Binding Location}" Foreground="Gray"/>
+                                    </TextBlock>
+                                </Grid>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Связь" Width="100">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid Margin="5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Image x:Name="iCommunicationQuality" Width="30" Margin="3">
+                                        <Image.Style>
+                                            <Style TargetType="Image">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding CommunicationQuality}" Value="1">
+                                                        <Setter Property="Source" Value="/images/comQuality/Signal1.png"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding CommunicationQuality}" Value="2">
+                                                        <Setter Property="Source" Value="/images/comQuality/Signal2.png"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding CommunicationQuality}" Value="3">
+                                                        <Setter Property="Source" Value="/images/comQuality/Signal3.png"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding CommunicationQuality}" Value="4">
+                                                        <Setter Property="Source" Value="/images/comQuality/Signal5.png"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Image.Style>
+                                    </Image>
+                                    <Image x:Name="iOperator" Width="30" Grid.Column="1" Margin="3">
+                                        <Image.Style>
+                                            <Style TargetType="Image">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding OperatorName}" Value="Билайн">
+                                                        <Setter Property="Source" Value="/images/operators/Beeline.png"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding OperatorName}" Value="МТС">
+                                                        <Setter Property="Source" Value="/images/operators/Mts.png"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding OperatorName}" Value="Т2">
+                                                        <Setter Property="Source" Value="/images/operators/Tele2.png"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding OperatorName}" Value="Мегафон">
+                                                        <Setter Property="Source" Value="/images/operators/Megafon.png"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Image.Style>
+                                    </Image>
+                                    <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding LastRefreshTime, StringFormat=HH:mm}" Margin="3" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                </Grid>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

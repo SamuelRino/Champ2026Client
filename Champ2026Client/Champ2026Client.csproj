@@ -15,10 +15,21 @@
     <None Remove="images\angle-left.png" />
     <None Remove="images\angle-right.png" />
     <None Remove="images\bars.png" />
+    <None Remove="images\comQuality\Signal1.png" />
+    <None Remove="images\comQuality\Signal2.png" />
+    <None Remove="images\comQuality\Signal3.png" />
+    <None Remove="images\comQuality\Signal5.png" />
     <None Remove="images\Logo.png" />
+    <None Remove="images\operators\Beeline.png" />
+    <None Remove="images\operators\Megafon.png" />
+    <None Remove="images\operators\Mts.png" />
+    <None Remove="images\operators\Tele2.png" />
     <None Remove="images\pencil.png" />
     <None Remove="images\plus.png" />
     <None Remove="images\share.png" />
+    <None Remove="images\states\DotBlue24.png" />
+    <None Remove="images\states\DotGreen24.png" />
+    <None Remove="images\states\DotRed24.png" />
     <None Remove="images\trash-o.png" />
     <None Remove="images\unlock.png" />
     <None Remove="search.png" />
@@ -36,6 +47,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
   </ItemGroup>
 
   <ItemGroup>
@@ -43,14 +55,25 @@
     <Resource Include="images\angle-right.png" />
     <Resource Include="images\bars.png" />
     <Resource Include="images\cogs.png" />
+    <Resource Include="images\comQuality\Signal1.png" />
+    <Resource Include="images\comQuality\Signal2.png" />
+    <Resource Include="images\comQuality\Signal3.png" />
+    <Resource Include="images\comQuality\Signal5.png" />
     <Resource Include="images\desktop.png" />
     <Resource Include="images\file-text-o.png" />
     <Resource Include="images\Logo.png" />
+    <Resource Include="images\operators\Beeline.png" />
+    <Resource Include="images\operators\Megafon.png" />
+    <Resource Include="images\operators\Mts.png" />
+    <Resource Include="images\operators\Tele2.png" />
     <Resource Include="images\pencil.png" />
     <Resource Include="images\plus.png" />
     <Resource Include="images\search.png" />
     <Resource Include="images\share.png" />
     <Resource Include="images\shopping-cart.png" />
+    <Resource Include="images\states\DotBlue24.png" />
+    <Resource Include="images\states\DotGreen24.png" />
+    <Resource Include="images\states\DotRed24.png" />
     <Resource Include="images\trash-o.png" />
     <Resource Include="images\unlock.png" />
   </ItemGroup>
