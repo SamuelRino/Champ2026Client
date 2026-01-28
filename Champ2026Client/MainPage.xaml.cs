@@ -45,8 +45,8 @@ namespace Champ2026Client
 
             using (_context = new User102Context())
             {
-                double count = await _context.VendingMachines.CountAsync();
-                double countAvailable = await _context.VendingMachines.Include(c => c.Status).Where(m => m.Status.Id == 1).CountAsync();
+                double count = await _context.VendingMachines.Where(m => m.IsDeleted != true).CountAsync();
+                double countAvailable = await _context.VendingMachines.Include(c => c.Status).Where(m => m.Status.Id == 1 && m.IsDeleted != true).CountAsync();
 
                 effective = countAvailable / count;              
             }
@@ -72,19 +72,19 @@ namespace Champ2026Client
                     new PieSeries
                     {
                     Title = "Работает",
-                    Values = new ChartValues<int> { _context.VendingMachines.Include(c => c.Status).Where(m => m.Status.Id == 1).Count() },
+                    Values = new ChartValues<int> { _context.VendingMachines.Include(c => c.Status).Where(m => m.Status.Id == 1 && m.IsDeleted != true).Count() },
                     Fill = Brushes.Green
                     },
                     new PieSeries
                     {
                     Title = "Обслуживается",
-                    Values = new ChartValues<int> { _context.VendingMachines.Include(c => c.Status).Where(m => m.Status.Id == 2).Count() },
+                    Values = new ChartValues<int> { _context.VendingMachines.Include(c => c.Status).Where(m => m.Status.Id == 2 && m.IsDeleted != true).Count() },
                     Fill = Brushes.DodgerBlue
                     },
                     new PieSeries
                     {
                     Title = "Не работает",
-                    Values = new ChartValues<int> { _context.VendingMachines.Include(c => c.Status).Where(m => m.Status.Id == 3).Count() },
+                    Values = new ChartValues<int> { _context.VendingMachines.Include(c => c.Status).Where(m => m.Status.Id == 3 && m.IsDeleted != true).Count() },
                     Fill = Brushes.Red
                     }
                 };
@@ -105,7 +105,7 @@ namespace Champ2026Client
             {
                 for (int i = 0; i < 3; i++)
                 {
-                    count[i] = _context.VendingMachines.Include(c => c.Status).Where(m => m.Status.Id == i+1).Count();
+                    count[i] = _context.VendingMachines.Include(c => c.Status).Where(m => m.Status.Id == i+1 && m.IsDeleted != true).Count();
                 }
             }
 

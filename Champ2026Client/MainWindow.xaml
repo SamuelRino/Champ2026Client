@@ -33,8 +33,10 @@
                     </StackPanel>
                 </StackPanel>
             </Expander.Header>
-            <StackPanel>
+            <StackPanel Background="Gray" FlowDirection="LeftToRight">
                 <TextBlock Text="121"/>
+                <Button Content="Что-то"/>
+                <Button Content="Кто-то"/>
             </StackPanel>
         </Expander>
 
