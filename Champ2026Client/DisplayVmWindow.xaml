@@ -4,8 +4,9 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Champ2026Client"
+      xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
       mc:Ignorable="d" 
-      d:DesignHeight="650" d:DesignWidth="800"
+      d:DesignHeight="650" d:DesignWidth="1200"
       Title="DisplayVmWindow" Loaded="Page_Loaded">
 
     <Grid>
@@ -114,6 +115,243 @@
                                     </Image>
                                     <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding LastRefreshTime, StringFormat=HH:mm}" Margin="3" FontWeight="Bold" HorizontalAlignment="Center"/>
                                 </Grid>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Загрузка" Width="100">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="5"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    
+                                    <ProgressBar Minimum="0" Maximum="100" Value="{Binding CurrentStock}" HorizontalAlignment="Center" Width="80"/>
+                                    <TextBlock Text="общая" HorizontalAlignment="Center"/>
+
+                                    <ProgressBar Grid.Row="2" Minimum="0" Maximum="100" Value="{Binding MinStock}" HorizontalAlignment="Center" Width="80"/>
+                                    <TextBlock Grid.Row="2" Text="миним." HorizontalAlignment="Center"/>
+                                </Grid>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Денежные средства" Width="200">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid Margin="3">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Image Source="/images/cash/Bills.png" Width="20" Margin="3"/>
+                                    <Image Grid.Row="1" Source="/images/cash/Coins.png" Width="20" Margin="3"/>
+                                    <Image Grid.Row="2" Source="/images/cash/Change.png" Width="20" Margin="3"/>
+
+                                    <TextBlock Grid.Column="1" FontWeight="Bold" VerticalAlignment="Center">
+                                        <Run Text="{Binding Bills}"/>
+                                        <Run Text=" р."/>
+                                        <Run Text="{Binding BillsCount}" FontWeight="Normal"/>
+                                    </TextBlock>
+                                    <TextBlock Grid.Column="1" Grid.Row="1" FontWeight="Bold" VerticalAlignment="Center">
+                                        <Run Text="{Binding Coins}"/>
+                                        <Run Text=" р."/>
+                                        <Run Text="{Binding CoinsCount}" FontWeight="Normal"/>
+                                    </TextBlock>
+                                    <TextBlock Grid.Column="1" Grid.Row="2" FontWeight="Bold" VerticalAlignment="Center">
+                                        <Run Text="{Binding Changes}"/>
+                                        <Run Text=" р."/>
+                                        <Run Text="{Binding ChangesCount}" FontWeight="Normal"/>
+                                    </TextBlock>
+                                </Grid>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="События" Width="140">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid Margin="3">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Image Source="/images/events/Sale.png" Width="20" Margin="3"/>
+                                    <Image Grid.Row="1" Source="/images/events/Encashment.png" Width="20" Margin="3"/>
+                                    <Image Grid.Row="2" Source="/images/events/Service.png" Width="20" Margin="3"/>
+
+                                    <TextBlock Grid.Column="1" Text="{Binding LastSale}" VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding LastEncashment}" VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding LastService}" VerticalAlignment="Center"/>
+                                </Grid>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Оборудование" Width="150">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid Margin="3">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Image Source="/images/hardware/PowerOk.png" Width="30"/>
+                                        <Image Width="30">
+                                            <Image.Style>
+                                                <Style TargetType="Image">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding BillValidatorOk}" Value="0">
+                                                            <Setter Property="Source" Value="/images/hardware/BillValidatorError.png"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding BillValidatorOk}" Value="1">
+                                                            <Setter Property="Source" Value="/images/hardware/BillValidatorOk.png"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Image.Style>
+                                        </Image>
+                                        <Image Source="/images/hardware/CoinAcceptorOk.png" Width="30"/>
+                                        <Image Width="30">
+                                            <Image.Style>
+                                                <Style TargetType="Image">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding CashlessOk}" Value="0">
+                                                            <Setter Property="Source" Value="/images/hardware/CashlessNone.png"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding CashlessOk}" Value="1">
+                                                            <Setter Property="Source" Value="/images/hardware/CashlessOk.png"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Image.Style>
+                                        </Image>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Image Width="30" Margin="2">
+                                            <Image.Style>
+                                                <Style TargetType="Image">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding CashRegisterOk}" Value="0">
+                                                            <Setter Property="Source" Value="/images/hardware/CashregisterNone.png"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding CashRegisterOk}" Value="1">
+                                                            <Setter Property="Source" Value="/images/hardware/CashregisterOk.png"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Image.Style>
+                                        </Image>
+                                        <Image Width="30" Margin="2">
+                                            <Image.Style>
+                                                <Style TargetType="Image">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding DisplayOk}" Value="0">
+                                                            <Setter Property="Source" Value="/images/hardware/DisplayNone.png"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding DisplayOk}" Value="1">
+                                                            <Setter Property="Source" Value="/images/hardware/DisplayOk.png"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Image.Style>
+                                        </Image>
+                                        <Image Source="/images/hardware/CardReaderNone.png" Width="30" Margin="2"/>
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Информация" Width="200">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                    <Image Source="/images/settings/ControlMode.png" Width="30">
+                                        <Image.Style>
+                                            <Style TargetType="Image">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding ControleMode}" Value="0">
+                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Image.Style>
+                                    </Image>
+                                    <Image Width="30">
+                                        <Image.Style>
+                                            <Style TargetType="Image">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding ComType}" Value="0">
+                                                        <Setter Property="Source" Value="/images/settings/MDB.png"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ComType}" Value="1">
+                                                        <Setter Property="Source" Value="/images/settings/ExePH.png"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ComType}" Value="2">
+                                                        <Setter Property="Source" Value="/images/settings/ExeST.png"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Image.Style>
+                                    </Image>
+                                    <Image Source="/images/settings/Audit2.png" Width="30">
+                                        <Image.Style>
+                                            <Style TargetType="Image">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Audit}" Value="0">
+                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Image.Style>
+                                    </Image>
+                                    <Image Source="/images/settings/DifferentsSettings.png" Width="30">
+                                        <Image.Style>
+                                            <Style TargetType="Image">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding DifferentsSettings}" Value="0">
+                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Image.Style>
+                                    </Image>
+                                    <Image Source="/images/settings/EndedTimeWork.png" Width="30">
+                                        <Image.Style>
+                                            <Style TargetType="Image">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding EndedTimeWork}" Value="0">
+                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Image.Style>
+                                    </Image>
+                                    <Image Source="/images/settings/FarmOnline.png" Width="30">
+                                        <Image.Style>
+                                            <Style TargetType="Image">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding FarmOnline}" Value="0">
+                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Image.Style>
+                                    </Image>
+                                </StackPanel>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
