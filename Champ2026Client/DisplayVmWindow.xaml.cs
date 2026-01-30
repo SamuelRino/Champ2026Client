@@ -46,6 +46,12 @@ namespace Champ2026Client
                 _CurrentMachines[i].Id = i + 1;
             }
             lvDisplay.ItemsSource = _CurrentMachines;
+            rTotalCount.Text = _CurrentMachines.Count.ToString();
+            rWorking.Text = _CurrentMachines.Where(m => m.StatusId == 1).Count().ToString();
+            rService.Text = _CurrentMachines.Where(m => m.StatusId == 2).Count().ToString();
+            rNotWorking.Text = _CurrentMachines.Where(m => m.StatusId == 3).Count().ToString();
+            rTotalSum.Text = (_AllMachines.Sum(m => m.Bills)+_AllMachines.Sum(m => m.Coins)).ToString();
+            rChangesSum.Text = _AllMachines.Sum(m => m.Changes).ToString();
         }
 
         private void ToggleButton_Checked(object sender, RoutedEventArgs e)

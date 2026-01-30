@@ -23,7 +23,7 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel>
-            <TextBlock Text="Торговые автоматы" FontSize="30"/>
+            <TextBlock Text="Торговые автоматы" FontSize="30" Foreground="DodgerBlue"/>
             <TextBlock x:Name="tbRecordsCount" Text="Всего найдено 9 шт."/>
         </StackPanel>
 

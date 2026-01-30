@@ -17,7 +17,9 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
-       
+
+        <TextBlock Text="Монитор торговых автоматов" Margin="10" FontSize="30" Foreground="DodgerBlue"/>
+
         <StackPanel x:Name="spFilters" Grid.Row="1" Orientation="Horizontal">
             <StackPanel.Resources>
                 <Style TargetType="ToggleButton">
@@ -109,7 +111,7 @@
         <ListView x:Name="lvDisplay" Grid.Row="3">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="#" Width="40" DisplayMemberBinding="{Binding Id}"/>
+                    <GridViewColumn Header="#" Width="20" DisplayMemberBinding="{Binding Id}"/>
                     <GridViewColumn Header="Торговый автомат" Width="250">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
@@ -446,5 +448,21 @@
                 </GridView>
             </ListView.View>
         </ListView>
+
+        <TextBlock Grid.Row="4" Margin="10" FontWeight="Bold" FontSize="14">
+            <Run Text="Итого автоматов: "/>
+            <Run x:Name="rTotalCount"/>
+            <Run Text="("/>
+            <Run x:Name="rWorking" Foreground="ForestGreen"/>
+            <Run Text=" / "/>
+            <Run x:Name="rService" Foreground="Blue"/>
+            <Run Text=" / "/>
+            <Run x:Name="rNotWorking" Foreground="Red"/>
+            <Run Text="). Денег в автоматах: "/>
+            <Run x:Name="rTotalSum"/>
+            <Run Text=" р. + "/>
+            <Run x:Name="rChangesSum"/>
+            <Run Text=" р. (сдача)"/>
+        </TextBlock>
     </Grid>
 </Page>
