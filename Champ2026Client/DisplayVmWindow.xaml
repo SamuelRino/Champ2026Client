@@ -12,11 +12,99 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
-            <RowDefinition Height="70"/>
+            <RowDefinition Height="80"/>
             <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
+       
+        <StackPanel x:Name="spFilters" Grid.Row="1" Orientation="Horizontal">
+            <StackPanel.Resources>
+                <Style TargetType="ToggleButton">
+                    <Setter Property="Width" Value="45"/>
+                    <Setter Property="Height" Value="40"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsClearClicked}" Value="True">
+                            <Setter Property="IsChecked" Value="False"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Resources>
+            <StackPanel Margin="10">
+                <TextBlock Text="Общее состояние"/>
+                <StackPanel x:Name="spTotalStates" Orientation="Horizontal">
+                    <ToggleButton Background="Transparent" BorderBrush="LightGray" BorderThickness="0.5" Checked="ToggleButton_Checked">
+                        <Image Source="/images/states/DotGreen24.png" Width="30"/>
+                    </ToggleButton>
+                    <ToggleButton Background="Transparent" BorderBrush="LightGray" BorderThickness="0.5" Checked="ToggleButton_Checked">
+                        <Image Source="/images/states/DotBlue24.png" Width="30"/>
+                    </ToggleButton>
+                    <ToggleButton Background="Transparent" BorderBrush="LightGray" BorderThickness="0.5" Checked="ToggleButton_Checked">
+                        <Image Source="/images/states/DotRed24.png" Width="30"/>
+                    </ToggleButton>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Margin="10">
+                <TextBlock Text="Подключение"/>
+                <StackPanel x:Name="spConnection" Orientation="Horizontal">
+                    <ToggleButton Background="Transparent" BorderBrush="LightGray" BorderThickness="0.5" Checked="ToggleButton_Checked">
+                        <Image Source="/images/settings/ControlMode.png"  Width="30"/>
+                    </ToggleButton>
+                    <ToggleButton Background="Transparent" BorderBrush="LightGray" BorderThickness="0.5" Checked="ToggleButton_Checked">
+                        <Image Source="/images/settings/MDB.png"  Width="30"/>
+                    </ToggleButton>
+                    <ToggleButton Background="Transparent" BorderBrush="LightGray" BorderThickness="0.5" Checked="ToggleButton_Checked">
+                        <Image Source="/images/settings/ExePH.png" Width="30"/>
+                    </ToggleButton>
+                    <ToggleButton Background="Transparent" BorderBrush="LightGray" BorderThickness="0.5" Checked="ToggleButton_Checked">
+                        <Image Source="/images/settings/ExeST.png" Width="30"/>
+                    </ToggleButton>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Margin="10">
+                <TextBlock Text="Дополнительные статусы"/>
+                <StackPanel x:Name="spStatuses" Orientation="Horizontal">
+                    <ToggleButton Background="Transparent" BorderBrush="LightGray" BorderThickness="0.5" Checked="ToggleButton_Checked">
+                        <Image Source="/images/statuses/NoConnection.png"  Width="30"/>
+                    </ToggleButton>
+                    <ToggleButton Background="Transparent" BorderBrush="LightGray" BorderThickness="0.5" Checked="ToggleButton_Checked">
+                        <Image Source="/images/statuses/HardwareProblems.png"  Width="30"/>
+                    </ToggleButton>
+                    <ToggleButton Background="Transparent" BorderBrush="LightGray" BorderThickness="0.5" Checked="ToggleButton_Checked">
+                        <Image Source="/images/statuses/NoSales.png" Width="30"/>
+                    </ToggleButton>
+                    <ToggleButton Background="Transparent" BorderBrush="LightGray" BorderThickness="0.5" Checked="ToggleButton_Checked">
+                        <Image Source="/images/statuses/NoEncashment.png" Width="30"/>
+                    </ToggleButton>
+                    <ToggleButton Background="Transparent" BorderBrush="LightGray" BorderThickness="0.5" Checked="ToggleButton_Checked">
+                        <Image Source="/images/statuses/NoService.png" Width="30"/>
+                    </ToggleButton>
+                    <ToggleButton Background="Transparent" BorderBrush="LightGray" BorderThickness="0.5" Checked="ToggleButton_Checked">
+                        <Image Source="/images/statuses/NoFillup.png" Width="30"/>
+                    </ToggleButton>
+                    <ToggleButton Background="Transparent" BorderBrush="LightGray" BorderThickness="0.5" Checked="ToggleButton_Checked">
+                        <Image Source="/images/statuses/FewChange.png" Width="30"/>
+                    </ToggleButton>
+                    <ToggleButton Background="Transparent" BorderBrush="LightGray" BorderThickness="0.5" Checked="ToggleButton_Checked">
+                        <Image Source="/images/statuses/FewGoods.png" Width="30"/>
+                    </ToggleButton>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Margin="10">
+                <TextBlock Text="Сортировка"/>
+                <ComboBox Width="250" Height="40" SelectedIndex="0" VerticalContentAlignment="Center">
+                    <ComboBoxItem Content="По состоянию ТА"/>
+                </ComboBox>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10">
+            <Button x:Name="btnExecute" Content="Применить" Foreground="White" Background="DodgerBlue" Margin="5" Padding="5" Click="btnExecute_Click"/>
+            <Button x:Name="btnClear" Content="Очистить" Margin="5" Padding="5" Click="btnClear_Click"/>
+        </StackPanel>
 
         <ListView x:Name="lvDisplay" Grid.Row="3">
             <ListView.View>

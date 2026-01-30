@@ -55,6 +55,14 @@
     <None Remove="images\states\DotBlue24.png" />
     <None Remove="images\states\DotGreen24.png" />
     <None Remove="images\states\DotRed24.png" />
+    <None Remove="images\statuses\FewChange.png" />
+    <None Remove="images\statuses\FewGoods.png" />
+    <None Remove="images\statuses\HardwareProblems.png" />
+    <None Remove="images\statuses\NoConnection.png" />
+    <None Remove="images\statuses\NoEncashment.png" />
+    <None Remove="images\statuses\NoFillup.png" />
+    <None Remove="images\statuses\NoSales.png" />
+    <None Remove="images\statuses\NoService.png" />
     <None Remove="images\trash-o.png" />
     <None Remove="images\unlock.png" />
     <None Remove="search.png" />
@@ -124,6 +132,14 @@
     <Resource Include="images\states\DotBlue24.png" />
     <Resource Include="images\states\DotGreen24.png" />
     <Resource Include="images\states\DotRed24.png" />
+    <Resource Include="images\statuses\FewChange.png" />
+    <Resource Include="images\statuses\FewGoods.png" />
+    <Resource Include="images\statuses\HardwareProblems.png" />
+    <Resource Include="images\statuses\NoConnection.png" />
+    <Resource Include="images\statuses\NoEncashment.png" />
+    <Resource Include="images\statuses\NoFillup.png" />
+    <Resource Include="images\statuses\NoSales.png" />
+    <Resource Include="images\statuses\NoService.png" />
     <Resource Include="images\trash-o.png" />
     <Resource Include="images\unlock.png" />
   </ItemGroup>
