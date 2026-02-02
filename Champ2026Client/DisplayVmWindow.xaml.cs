@@ -89,12 +89,17 @@ namespace Champ2026Client
                 }
             }
 
-            bool billAcceptor = false;
-            if (((ToggleButton)VisualTreeHelper.GetChild(spStatuses, 1)).IsChecked == true)
+            bool hardwareProblem = false;
+            int problemStatus = -1;
+            for (int i = 0; i < 8; i++)
             {
-                billAcceptor = true;
+                if (((ToggleButton)VisualTreeHelper.GetChild(spStatuses, i)).IsChecked == true)
+                {
+                    hardwareProblem = true;
+                    problemStatus = i;
+                }
             }
-
+            
             if (status != 0)
             {
                 _CurrentMachines = _CurrentMachines.Where(m => m.StatusId == status).ToList();
@@ -110,9 +115,16 @@ namespace Champ2026Client
                 _CurrentMachines = _CurrentMachines.Where(m => m.ComType == conType).ToList();
             }
 
-            if (billAcceptor)
+            if (hardwareProblem)
             {
-                _CurrentMachines = _CurrentMachines.Where(m => m.BillValidatorOk == 0).ToList();
+                if (problemStatus == 1)
+                {
+                    _CurrentMachines = _CurrentMachines.Where(m => m.BillValidatorOk == 0).ToList();
+                }
+                else
+                {
+                    _CurrentMachines = new();
+                }
             }
             Refresh();
         }

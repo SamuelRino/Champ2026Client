@@ -36,6 +36,7 @@
     <None Remove="images\hardware\DisplayNone.png" />
     <None Remove="images\hardware\DisplayOk.png" />
     <None Remove="images\hardware\PowerOk.png" />
+    <None Remove="images\info.png" />
     <None Remove="images\Logo.png" />
     <None Remove="images\operators\Beeline.png" />
     <None Remove="images\operators\Megafon.png" />
@@ -65,6 +66,7 @@
     <None Remove="images\statuses\NoService.png" />
     <None Remove="images\trash-o.png" />
     <None Remove="images\unlock.png" />
+    <None Remove="images\warning.png" />
     <None Remove="search.png" />
     <None Remove="shopping-cart.png" />
   </ItemGroup>
@@ -81,6 +83,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+    <PackageReference Include="Notification.Wpf" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -111,6 +114,7 @@
     <Resource Include="images\hardware\DisplayNone.png" />
     <Resource Include="images\hardware\DisplayOk.png" />
     <Resource Include="images\hardware\PowerOk.png" />
+    <Resource Include="images\info.png" />
     <Resource Include="images\Logo.png" />
     <Resource Include="images\operators\Beeline.png" />
     <Resource Include="images\operators\Megafon.png" />
@@ -142,6 +146,7 @@
     <Resource Include="images\statuses\NoService.png" />
     <Resource Include="images\trash-o.png" />
     <Resource Include="images\unlock.png" />
+    <Resource Include="images\warning.png" />
   </ItemGroup>
 
 </Project>

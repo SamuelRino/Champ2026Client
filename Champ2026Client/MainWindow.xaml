@@ -10,7 +10,7 @@
     Height="950"
     Loaded="Window_Loaded"
     mc:Ignorable="d"
-    WindowStartupLocation="CenterScreen">
+    WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
@@ -44,8 +44,8 @@
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="40"/>
-                <ColumnDefinition x:Name="cdColumn1" Width="auto"/>
-                <ColumnDefinition x:Name="cdColumn2" Width="25"/>
+                <ColumnDefinition x:Name="cdColumn1" Width="0"/>
+                <ColumnDefinition x:Name="cdColumn2" Width="0"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -67,11 +67,18 @@
             <Image Source="/images/shopping-cart.png" Grid.Row="4" VerticalAlignment="Top"/>
             <Image Source="/images/cogs.png" Grid.Row="5" VerticalAlignment="Top"/>
 
-            <TextBlock Text="Главная" Grid.Row="1" Grid.Column="1"/>
-            <Button x:Name="btnMainPage" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1" BorderBrush="Transparent" Background="Transparent" Click="btnMainPage_Click" />
 
-            <TextBlock Text="Монитор ТА" Grid.Row="2" Grid.Column="1"/>
-            <Button x:Name="btnVMDisplay" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Panel.ZIndex="1" BorderBrush="Transparent" Background="Transparent"/>
+            <Button x:Name="btnMainPage" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" BorderBrush="Transparent" Background="Transparent" Click="btnMainPage_Click">
+                <Button.Content>
+                    <TextBlock Text="Главная" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top"/>
+                </Button.Content>
+            </Button>
+
+            <Button x:Name="btnVMDisplay" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" BorderBrush="Transparent" Background="Transparent" Click="btnVMDisplay_Click">
+                <Button.Content>
+                    <TextBlock Text="Монитор ТА" Grid.Row="2" Grid.Column="1"/>
+                </Button.Content>
+            </Button>
 
             <TextBlock Grid.Row="3" Grid.Column="1" Text="Детальные отчёты"/>
             <Expander Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" Grid.ColumnSpan="2" FlowDirection="RightToLeft">

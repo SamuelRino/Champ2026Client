@@ -1,4 +1,5 @@
 ﻿using Champ2026Client.Models;
+using Notification.Wpf;
 using System.Buffers.Text;
 using System.IO;
 using System.Text;
@@ -12,6 +13,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Champ2026Client
 {
@@ -29,10 +31,16 @@ namespace Champ2026Client
         private MainPage mainPage = new();
         private AdministrationVMPage administrationVMPage = new();
         private DisplayVmWindow displayVmPage = new();
+        private DispatcherTimer timer;
+        public int interval = 20;
         public MainWindow()
         {
             InitializeComponent();
-            NavigateToPage3(null, null);
+            NavigateToPage1(null, null);
+            timer = new();
+            timer.Interval = new(0, 0, interval);
+            timer.Tick += (sender, e) => timer_tick();
+            timer.Start();
         }
 
         private void NavigateToPage1(object sender, RoutedEventArgs e)
@@ -88,6 +96,31 @@ namespace Champ2026Client
         private void btnMainPage_Click(object sender, RoutedEventArgs e)
         {
             NavigateToPage1(null, null);
+        }
+
+        private void btnVMDisplay_Click(object sender, RoutedEventArgs e)
+        {
+            NavigateToPage3(null, null);
+        }
+
+        private void timer_tick()
+        {
+            var notif = new NotificationManager();
+            Random rnd = new();
+            int type = rnd.Next(0,3);
+            interval = rnd.Next(20, 51);
+            switch (type)
+            {
+                case 0:
+                    notif.Show("Информация", "Товар выдан успешно!", NotificationType.Success, "", new(0, 0, 5), icon: new BitmapImage(new Uri("/images/info.png", UriKind.Relative)));
+                    break;
+                case 1:
+                    notif.Show("Предупреждение", "Внимание, заканчивается товар!", NotificationType.Warning, "", new(0, 0, 7), icon: new BitmapImage(new Uri("/images/warning.png", UriKind.Relative)));
+                    break;
+                case 2:
+                    notif.Show("Критическая ошибка!", "Проверьте состояние автоматов", NotificationType.Error, "", new(0, 0, 10), icon: new BitmapImage(new Uri("/images/warning.png", UriKind.Relative)));
+                    break;
+            }
         }
     }
 }
