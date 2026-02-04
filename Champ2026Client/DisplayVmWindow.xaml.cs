@@ -33,25 +33,37 @@ namespace Champ2026Client
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            var display = await _api.GetDisplayVmAsync();
-            _AllMachines = display;
-            _CurrentMachines = display;
-            Refresh();
+            try
+            {
+                var display = await _api.GetDisplayVmAsync();
+                _AllMachines = display;
+                _CurrentMachines = display;
+                Refresh();
+                btnExecute.IsEnabled = true;
+                btnClear.IsEnabled = true;
+            }
+            catch
+            {
+                MessageBox.Show("Не удалось подключиться к API");
+            }
         }
 
         public void Refresh()
         {
-            for (int i = 0; i < _CurrentMachines.Count; i++)
+            if (_CurrentMachines is not null)
             {
-                _CurrentMachines[i].Id = i + 1;
+                for (int i = 0; i < _CurrentMachines.Count; i++)
+                {
+                    _CurrentMachines[i].Id = i + 1;
+                }
+                lvDisplay.ItemsSource = _CurrentMachines;
+                rTotalCount.Text = _CurrentMachines.Count.ToString();
+                rWorking.Text = _CurrentMachines.Where(m => m.StatusId == 1).Count().ToString();
+                rService.Text = _CurrentMachines.Where(m => m.StatusId == 2).Count().ToString();
+                rNotWorking.Text = _CurrentMachines.Where(m => m.StatusId == 3).Count().ToString();
+                rTotalSum.Text = (_AllMachines.Sum(m => m.Bills) + _AllMachines.Sum(m => m.Coins)).ToString();
+                rChangesSum.Text = _AllMachines.Sum(m => m.Changes).ToString();
             }
-            lvDisplay.ItemsSource = _CurrentMachines;
-            rTotalCount.Text = _CurrentMachines.Count.ToString();
-            rWorking.Text = _CurrentMachines.Where(m => m.StatusId == 1).Count().ToString();
-            rService.Text = _CurrentMachines.Where(m => m.StatusId == 2).Count().ToString();
-            rNotWorking.Text = _CurrentMachines.Where(m => m.StatusId == 3).Count().ToString();
-            rTotalSum.Text = (_AllMachines.Sum(m => m.Bills)+_AllMachines.Sum(m => m.Coins)).ToString();
-            rChangesSum.Text = _AllMachines.Sum(m => m.Changes).ToString();
         }
 
         private void ToggleButton_Checked(object sender, RoutedEventArgs e)

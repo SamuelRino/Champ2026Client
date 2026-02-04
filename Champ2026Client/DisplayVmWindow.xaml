@@ -104,8 +104,8 @@
         </StackPanel>
 
         <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10">
-            <Button x:Name="btnExecute" Content="Применить" Foreground="White" Background="DodgerBlue" Margin="5" Padding="5" Click="btnExecute_Click"/>
-            <Button x:Name="btnClear" Content="Очистить" Margin="5" Padding="5" Click="btnClear_Click"/>
+            <Button x:Name="btnExecute" Content="Применить" Foreground="White" Background="DodgerBlue" Margin="5" Padding="5" Click="btnExecute_Click" IsEnabled="False"/>
+            <Button x:Name="btnClear" Content="Очистить" Margin="5" Padding="5" Click="btnClear_Click" IsEnabled="False"/>
         </StackPanel>
 
         <ListView x:Name="lvDisplay" Grid.Row="3">

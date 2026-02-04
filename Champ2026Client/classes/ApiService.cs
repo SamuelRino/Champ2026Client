@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Champ2026Client.classes
 {
@@ -23,11 +24,18 @@ namespace Champ2026Client.classes
         }
 
         public async Task<List<DisplayVmDTO>> GetDisplayVmAsync()
-        {
-            var response = await _httpClient.GetAsync("DisplayVm");
-            response.EnsureSuccessStatusCode();
-            var json = await response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<List<DisplayVmDTO>>(json);
+        {           
+            try
+            {
+                var response = await _httpClient.GetAsync("DisplayVm");
+                response.EnsureSuccessStatusCode();
+                var json = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<List<DisplayVmDTO>>(json);
+            }
+            catch (HttpRequestException)
+            {
+                throw new Exception("We have uno problemo");
+            }
         }
     }
 }
