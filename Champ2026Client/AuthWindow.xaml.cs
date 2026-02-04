@@ -36,23 +36,30 @@ namespace Champ2026Client
                 using (User102Context c = new ())
                 {
                     var user = c.UserLogins.FirstOrDefault(u => u.Login == Login);
-                    bool verify = PasswordHasher.VerifyPassword(user.Password, Password);
-                    if (verify)
+                    if (user is not null)
                     {
-                        DataUser.user = c.Users.FirstOrDefault(u => u.Id == user.UserId);
-                        MainWindow w = new();
-                        w.Show();
-                        this.Close();
+                        bool verify = PasswordHasher.VerifyPassword(user.Password, Password);
+                        if (verify)
+                        {
+                            DataUser.user = c.Users.FirstOrDefault(u => u.Id == user.UserId);
+                            MainWindow w = new();
+                            w.Show();
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Неправильный логин или пароль", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Неправильный логин или пароль");
+                        MessageBox.Show("Пользователя с таким логином не существует", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
                 }
             }
             else
             {
-                MessageBox.Show("Введите логин и пароль");
+                MessageBox.Show("Введите логин и пароль", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 

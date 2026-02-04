@@ -36,7 +36,7 @@ namespace Champ2026Client
         {
             InitializeComponent();
             currentPage = 0;
-            recordsPerPage = 10;
+            recordsPerPage = 11;
             _timer = new DispatcherTimer();
             _timer.Interval = TimeSpan.FromSeconds(10);
             Timer_tick();
@@ -78,7 +78,7 @@ namespace Champ2026Client
                 }
                 catch
                 {
-                    MessageBox.Show("Возникла ошибка");
+                    MessageBox.Show("Возникла ошибка при удалении", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }

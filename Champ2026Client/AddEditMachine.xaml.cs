@@ -91,7 +91,7 @@ namespace Champ2026Client
                     c.VendingMachines.Add(machine);
                     c.SaveChanges();
                 }
-                MessageBox.Show("Аппарат успешно сохранён!");
+                MessageBox.Show("Аппарат успешно сохранён!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
                 this.Close();
             }
             catch (DbUpdateException ex)

@@ -44,7 +44,7 @@ namespace Champ2026Client
             }
             catch
             {
-                MessageBox.Show("Не удалось подключиться к API");
+                MessageBox.Show("Не удалось подключиться к API", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
